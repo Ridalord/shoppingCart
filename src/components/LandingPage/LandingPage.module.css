@@ -1,0 +1,83 @@
+.wrap{
+  background-image: url("./apple-orange.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.overlay{
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.685);
+  color: #f8f8f8;
+  padding: 20px 50px;
+}
+
+.logo{
+  height: 60px;
+}
+
+.coonetnt{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 90%;
+}
+
+.coonetnt>div{
+  width: 100vw;
+}
+
+.coonetnt>div>h1{
+  font-size: 80px;
+  font-family: var(--secondary-font-family);
+}
+
+.coonetnt>div>p{
+  width: 70%;
+  margin: auto;
+  font-size: 20px;
+  font-family: var(--main-font-family);
+  margin-bottom: 30px;
+}
+
+/* Button Styles */
+.button {
+  background-color: #ff9900;
+  color: #ffffff;
+  font-family: var(--main-font-family);
+  border: none;
+  padding: 20px 30px;
+  font-size:40px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff6600;
+}
+
+@media only screen and (max-width: 767px) {
+  .overlay{
+    padding: 20px 10px;
+  }
+
+  .coonetnt>div>h1 {
+    font-size: 40px;
+  }
+
+  .coonetnt>div>p {
+    width: 90%;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .button {
+    padding: 15px 25px;
+    font-size: 35px;
+    border-radius: 18px;
+  }
+}
+
