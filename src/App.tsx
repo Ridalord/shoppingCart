@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
+import StorePage from "./components/StorePage/StorePage";
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <Router basename="shoppingCart">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/shop" element={<Shop />} /> */}
+        <Route path="/store" element={<StorePage />} />
       </Routes>
     </Router>
   )
