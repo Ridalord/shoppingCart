@@ -1,9 +1,8 @@
 import { ReactElement, createContext, useEffect, useMemo, useReducer } from "react"
 
 export type CartItemType = {
-  id: string,
+  sku: string,
   name: string,
-  description: string,
   price: number,
   quantity: number,
 }
@@ -15,7 +14,7 @@ type CartStateType = {
 
 const initCartState: CartStateType = {
   cart: JSON.parse(localStorage.getItem('cart')!) || [],
-  activeOffers: false
+  activeOffers: JSON.parse(localStorage.getItem('activeOffers')!) || false
 }
 
 const REDUCER_ACTON_TYPE = {
@@ -39,27 +38,45 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
     case REDUCER_ACTON_TYPE.ADD: {
       // Logic to add items to cart
       if (!action.payload) {
-        throw new Error('action.payload missing in ADD action')
+        throw new Error('action.payload missing in ADD action');
       }
-      const { id, name, price, description } = action.payload
 
-      const filteredCart: CartItemType[] = state.cart.filter(item => item.id != id)
+      let defaultQuantity;
+      const { sku, name, price } = action.payload;
 
-      const itemExists: CartItemType | undefined = state.cart.find(item => item.id === id)
+      if (state.activeOffers && name === "Apple") {
+        defaultQuantity = 2; // If active offer applies and item is Apple, default quantity is 2
+      } else {
+        defaultQuantity = 1; // Otherwise, default quantity is 1
+      }
 
-      const quantity: number = itemExists ? itemExists.quantity + 1 : 1
+      const filteredCart: CartItemType[] = state.cart.filter(item => item.sku !== sku);
+      const itemExists: CartItemType | undefined = state.cart.find(item => item.sku === sku);
 
-      return { ...state, cart: [...filteredCart, { id, name, price, quantity, description }] }
+      let calcQuantity: number = defaultQuantity; // Initialize calcQuantity with defaultQuantity
+
+      if (itemExists) {
+        if (state.activeOffers && name === "Apple") {
+          calcQuantity = itemExists.quantity + 2; // If active offer applies and item is Apple, increment by 2
+        } else {
+          calcQuantity = itemExists.quantity + 1; // Otherwise, increment by 1
+        }
+      }
+
+      const quantity: number = itemExists ? calcQuantity : defaultQuantity; // Use calculated or default quantity
+
+      return { ...state, cart: [...filteredCart, { sku, name, price, quantity }] };
     }
+
     case REDUCER_ACTON_TYPE.REMOVE: {
       // Logic to remove items from cart
       if (!action.payload) {
         throw new Error('action.payload missing in REMOVE action')
       }
 
-      const { id } = action.payload
+      const { sku } = action.payload
 
-      const filteredCart: CartItemType[] = state.cart.filter(item => item.id != id)
+      const filteredCart: CartItemType[] = state.cart.filter(item => item.sku != sku)
 
       return { ...state, cart: [...filteredCart] }
     }
@@ -69,11 +86,11 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
         throw new Error('action.payload missing in QUANTITY action')
       }
 
-      const { id, quantity } = action.payload
+      const { sku, quantity } = action.payload
 
-      const filteredCart: CartItemType[] = state.cart.filter(item => item.id != id)
+      const filteredCart: CartItemType[] = state.cart.filter(item => item.sku != sku)
 
-      const itemExists: CartItemType | undefined = state.cart.find(item => item.id === id)
+      const itemExists: CartItemType | undefined = state.cart.find(item => item.sku === sku)
 
       if (!itemExists) {
         throw new Error('Item must exist in order to update quantity')
@@ -127,7 +144,7 @@ const useCartContext = (initCartState: CartStateType) => {
     if (state.activeOffers) {
       let total = 0;
       state.cart.forEach(item => {
-        const priceInDollars = item.price / 100; // Convert price from cents to dollars
+        const priceInDollars = item.price ; // Convert price from cents to dollars
         if (item.name === 'Apple') {
           total += Math.ceil(item.quantity / 2) * priceInDollars; // Buy one, get one free on Apples
         } else if (item.name === 'Orange') {
@@ -140,7 +157,7 @@ const useCartContext = (initCartState: CartStateType) => {
     } else {
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
         state.cart.reduce((previousValue: number, cartItem: CartItemType) => {
-          const priceInDollars = cartItem.price / 100; // Convert price from cents to dollars
+          const priceInDollars = cartItem.price ; // Convert price from cents to dollars
           return previousValue + (cartItem.quantity * priceInDollars);
         }, 0)
       );

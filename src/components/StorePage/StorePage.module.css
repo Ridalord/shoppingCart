@@ -25,3 +25,141 @@
   background-color: #f44336;
   color: white;
 }
+
+.content{
+  grid-template-columns: 2fr 1fr;
+  padding: 30px 50px;
+  gap: 40px;
+}
+
+.cartDetails>h3{
+  text-align: center;
+  font-family: var(--secondary-font-family);
+}
+
+.tableBody{
+  height: 50vh;
+}
+
+/* StorePage.module.css */
+.cartItemWrap {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cartItemWrap th,
+.cartItemWrap td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.cartItemWrap th {
+  background-color: #f2f2f2;
+  font-family: var(--secondary-font-family);
+}
+
+.cartItemWrap tr:hover {
+  background-color: #f2f2f2;
+}
+
+.cartItemWrap th:first-child,
+.cartItemWrap td:first-child {
+  text-align: center;
+}
+
+.cartItemWrap th:last-child,
+.cartItemWrap td:last-child {
+  text-align: center;
+}
+
+.cartItemWrap button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* StorePage.module.css */
+.cartLineItem {
+  border-bottom: 1px solid #ddd;
+  /* Add border bottom to separate table rows */
+}
+
+.cartLineItem td {
+  padding: 8px;
+}
+
+.cartLineItem button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cartLineItem button:hover {
+  color: red;
+  /* Change color on hover */
+}
+
+.cartLineItem input[type="number"] {
+  width: 50px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cartLineItem .quantityButtons {
+  display: flex;
+  align-items: center;
+}
+
+.cartLineItem .quantityButtons button {
+  padding: 4px 8px;
+  margin-right: 4px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cartLineItem .quantityButtons button:hover {
+  background-color: #e0e0e0;
+  /* Change background color on hover */
+}
+
+/* StorePage.module.css */
+.totalDetails {
+  margin-top: 20px;
+  /* Add top margin for spacing */
+  padding: 20px;
+  /* Add padding for spacing */
+  border: 1px solid #ccc;
+  /* Add border for visual separation */
+  border-radius: 8px;
+  /* Add border radius for rounded corners */
+  display: flex;
+  justify-content: space-between;
+  /* Align items with space between them */
+  align-items: center;
+  /* Center items vertically */
+}
+
+.totalDetails div {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--main-font-family);
+  /* Adjust font size */
+}
+
+.totalDetails button {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.totalDetails button:hover {
+  background-color: rgb(224, 146, 0);
+}

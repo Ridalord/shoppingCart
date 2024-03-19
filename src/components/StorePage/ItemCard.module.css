@@ -1,0 +1,66 @@
+/* ItemCard.module.css */
+
+.cardWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 5px 3px 10px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 45%;
+}
+
+.cardWrap>div:first-child {
+  margin-bottom: 16px;
+}
+
+.cardWrap img {
+  width: 100%;
+  /* Adjust size as needed */
+  height: 300px;
+  /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cardWrap img:last-child {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 120px;
+  width: 120px;
+}
+
+.cardWrap div:last-child {
+  text-align: center;
+}
+
+.cardWrap h5 {
+  margin-bottom: 8px;
+  font-size: 25px;
+  color: #333;
+  font-family: var(--secondary-font-family);
+}
+
+.cardWrap p {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #666;
+}
+
+.cardWrap button {
+  padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cardWrap button:hover {
+  background-color: rgb(224, 146, 0);
+}

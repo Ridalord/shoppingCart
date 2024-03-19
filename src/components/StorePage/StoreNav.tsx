@@ -1,12 +1,12 @@
-import { useState } from "react";
 import classes from "./StorePage.module.css"
 import Logo from "./halord-store.jpg"
 import ToggleButton from "./toggleButton";
+import useCart from "../hooks/useCart";
 
 export default function StoreNav() {
-  const [isToggled, setIsToggled] = useState(false);
+  const {dispatch, REDUCER_ACTIONS} = useCart()
   const handleChange = () => {
-    setIsToggled(!isToggled);
+    dispatch({type: REDUCER_ACTIONS.TOGGLE_OFFER})
   };
   return (
     <nav className={`d-flex justify-content-between ${classes.navWrap}`}>
@@ -14,7 +14,7 @@ export default function StoreNav() {
         <img src={Logo} alt="Logo" className={classes.logo} />
       </div>
       <div>
-        <ToggleButton applyPromo={ isToggled} togglePromo={handleChange} />
+        <ToggleButton togglePromo={handleChange} />
       </div>
     </nav>
   )
