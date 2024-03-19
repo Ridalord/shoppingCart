@@ -1,5 +1,5 @@
 import classes from "./StorePage.module.css"
-import Logo from "./halord-store.jpg"
+import Logo from "./images/halord-store.jpg"
 import ToggleButton from "./toggleButton";
 import useCart from "../hooks/useCart";
 import { Link } from "react-router-dom";
