@@ -1,6 +1,7 @@
 // import classes from "./StorePage.module.css"
 import Switch from '@mui/joy/Switch';
 import useCart from '../hooks/useCart';
+import classes from "./StorePage.module.css"
 
 
 type PropTypes = {
@@ -10,8 +11,8 @@ type PropTypes = {
 export default function ToggleButton({ togglePromo }: PropTypes) {
   const { activeOffers} = useCart();
   return (
-    <div>
-      <span>{activeOffers ? "Exclusive Offer" : "No Exclusive Offer"}</span>
+    <div className={classes.toggleButton}>
+      <span>{activeOffers ? "Exclusive Offer" : "No Offer"}</span>
       <Switch
         checked={activeOffers}
         onChange={togglePromo}

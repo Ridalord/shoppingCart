@@ -26,23 +26,30 @@ export default function StorePage() {
         </div>
         <div className={classes.cartDetails}>
           <h3>Cart Items</h3>
-          <table className={classes.cartItemWrap}>
-            <tbody className={classes.tableBody}>
-              <tr>
-                <th>S/N</th>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th></th>
-              </tr>
-              {
-                cart.map((cartItem, index: number) => {
-                  return <CartLineItem cartItem={cartItem} index={index} key={cartItem.sku}/>
-                })
-              }
-            </tbody>
+          <div className={classes.tableBody}>
+            <table className={classes.cartItemWrap}>
+              <tbody>
+                <tr>
+                  <th>S/N</th>
+                  <th>Item</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th></th>
+                </tr>
+                {cart.length > 0 ? (
+                  cart.map((cartItem, index) => (
+                    <CartLineItem cartItem={cartItem} index={index} key={cartItem.sku} />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={5}>No Item in Cart</td>
+                  </tr>
+                )}
+              </tbody>
 
-          </table>
+            </table>
+          </div>
+          
           <div className={classes.totalDetails}>
             <div>Total Items: {totalCartItems}</div>
             <div>Total: {totalPrice}</div>

@@ -38,7 +38,7 @@
 }
 
 .tableBody{
-  height: 50vh;
+  height: 50vh !important;
 }
 
 /* StorePage.module.css */
@@ -82,7 +82,8 @@
 /* StorePage.module.css */
 .cartLineItem {
   border-bottom: 1px solid #ddd;
-  /* Add border bottom to separate table rows */
+    font-family: var(--main-font-family);
+    font-weight:700;
 }
 
 .cartLineItem td {
@@ -162,4 +163,24 @@
 
 .totalDetails button:hover {
   background-color: rgb(224, 146, 0);
+}
+
+/* StorePage.module.css */
+.toggleButton {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.toggleButton span {
+  margin-right: 10px;
+  /* Add right margin for spacing */
+}
+
+.toggleButton .MuiSwitch-root {
+  width: 48px;
+  /* Set width of the switch */
+  height: 28px;
+  /* Set height of the switch */
 }
