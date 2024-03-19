@@ -10,11 +10,14 @@ import CartLineItem from "./cartLineItem";
 
 export default function StorePage() {
   const { products } = useProducts()
-  const {cart, activeOffers,totalPrice, totalCartItems}= useCart()
+  const {cart, activeOffers,totalPrice, totalCartItems, REDUCER_ACTIONS, dispatch}= useCart()
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('activeOffers', JSON.stringify(activeOffers));
   }, [cart, activeOffers]);
+  const handleCheckout = () => {
+    dispatch({type: REDUCER_ACTIONS.SUBMIT})
+  }
   return (
     <div>
       <StoreNav/>
@@ -53,7 +56,7 @@ export default function StorePage() {
           <div className={classes.totalDetails}>
             <div>Total Items: {totalCartItems}</div>
             <div>Total: {totalPrice}</div>
-            <button>Checkout</button>
+            <button onClick={handleCheckout}>Checkout</button>
           </div>
         </div>
       </div>

@@ -41,7 +41,6 @@
   height: 50vh !important;
 }
 
-/* StorePage.module.css */
 .cartItemWrap {
   width: 100%;
   border-collapse: collapse;
@@ -79,7 +78,6 @@
   cursor: pointer;
 }
 
-/* StorePage.module.css */
 .cartLineItem {
   border-bottom: 1px solid #ddd;
     font-family: var(--main-font-family);
@@ -123,31 +121,22 @@
 
 .cartLineItem .quantityButtons button:hover {
   background-color: #e0e0e0;
-  /* Change background color on hover */
 }
 
-/* StorePage.module.css */
 .totalDetails {
   margin-top: 20px;
-  /* Add top margin for spacing */
   padding: 20px;
-  /* Add padding for spacing */
   border: 1px solid #ccc;
-  /* Add border for visual separation */
   border-radius: 8px;
-  /* Add border radius for rounded corners */
   display: flex;
   justify-content: space-between;
-  /* Align items with space between them */
   align-items: center;
-  /* Center items vertically */
 }
 
 .totalDetails div {
   font-size: 18px;
   font-weight: 700;
   font-family: var(--main-font-family);
-  /* Adjust font size */
 }
 
 .totalDetails button {
@@ -165,7 +154,6 @@
   background-color: rgb(224, 146, 0);
 }
 
-/* StorePage.module.css */
 .toggleButton {
   display: flex;
   align-items: center;
@@ -175,12 +163,34 @@
 
 .toggleButton span {
   margin-right: 10px;
-  /* Add right margin for spacing */
 }
 
 .toggleButton .MuiSwitch-root {
   width: 48px;
-  /* Set width of the switch */
   height: 28px;
-  /* Set height of the switch */
+}
+
+@media only screen and (max-width: 767px) {
+  .navWrap {
+    padding: 10px 20px;
+  }
+  .content {
+    grid-template-columns: 1fr;
+    padding: 50px 30px;
+  }
+  .itemWrap{
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .tableBody {
+    height: 30vh !important;
+  }
+  .totalDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .totalDetails button{
+   grid-row: 2/3;
+   grid-column: 1/3;
+  }
 }

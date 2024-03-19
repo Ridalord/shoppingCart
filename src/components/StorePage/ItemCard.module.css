@@ -64,3 +64,10 @@
 .cardWrap button:hover {
   background-color: rgb(224, 146, 0);
 }
+
+@media only screen and (max-width: 767px) {
+  .cardWrap{
+    width: 100%;
+    padding: 10px;
+  }
+}
