@@ -1,0 +1,74 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+}
+
+.content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.item {
+  margin-bottom: 10px;
+  display: inline-flex;
+
+}
+
+.item span {
+  display: block;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.total {
+  margin-top: 20px;
+}
+
+.total p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.message {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+button {
+  background-color: #ff9900;
+  color: #ffffff;
+  font-family: var(--main-font-family);
+  border: none;
+  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 5px !important;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff6600;
+}
+
+@media only screen and (max-width: 767px) {
+   .content{
+    width: 90%;
+   }
+}
