@@ -1,22 +1,25 @@
 // import { ProductType } from "../context/ProductsProvider";
 // import useCart from "../hooks/useCart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useProducts from "../hooks/useProducts";
 import ItemCard from "./ItemCard";
 import StoreNav from "./StoreNav";
 import classes from "./StorePage.module.css"
 import useCart from "../hooks/useCart";
 import CartLineItem from "./cartLineItem";
+import ModalCheckout from "../CheckoutModal/ModalCheckout";
 
 export default function StorePage() {
   const { products } = useProducts()
-  const {cart, activeOffers,totalPrice, totalCartItems, REDUCER_ACTIONS, dispatch}= useCart()
+  const [showModal, setShowModal]= useState<boolean>(true)
+  const {cart, activeOffers,totalPrice, totalCartItems}= useCart()
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('activeOffers', JSON.stringify(activeOffers));
   }, [cart, activeOffers]);
-  const handleCheckout = () => {
-    dispatch({type: REDUCER_ACTIONS.SUBMIT})
+
+  const handleSubmit = () => {
+    setShowModal((prev)=> !prev)
   }
   return (
     <div>
@@ -56,10 +59,11 @@ export default function StorePage() {
           <div className={classes.totalDetails}>
             <div>Total Items: {totalCartItems}</div>
             <div>Total: {totalPrice}</div>
-            <button onClick={handleCheckout}>Checkout</button>
+            <button onClick={handleSubmit} disabled={cart.length <= 0}>Checkout</button>
           </div>
         </div>
       </div>
+      {showModal && <ModalCheckout setShowModal={setShowModal} />}
     </div>
   )
 }

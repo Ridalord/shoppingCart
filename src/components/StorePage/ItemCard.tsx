@@ -18,9 +18,9 @@ export default function ItemCard({ product }: PropTypes) {
   }
   let banner: ReactElement;
   if (activeOffers && product.name === "Apple") {
-    banner= <img src={Buy1Get1Free} />
+    banner = <div style={{ backgroundImage: `url(${Buy1Get1Free})` }}></div>;
   } else if (activeOffers && product.name === "Orange") {
-    banner = <img src={Buy2Get1Free} />
+    banner = <div style={{ backgroundImage: `url(${Buy2Get1Free})` }}></div>;
   } else {
     banner = <span></span>
   }

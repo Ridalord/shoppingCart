@@ -69,7 +69,6 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
     }
 
     case REDUCER_ACTON_TYPE.REMOVE: {
-      // Logic to remove items from cart
       if (!action.payload) {
         throw new Error('action.payload missing in REMOVE action')
       }
@@ -81,7 +80,6 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       return { ...state, cart: [...filteredCart] }
     }
     case REDUCER_ACTON_TYPE.QUANTITY: {
-      // Logic to update item quantity in cart
       if (!action.payload) {
         throw new Error('action.payload missing in QUANTITY action')
       }
@@ -101,7 +99,6 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       return { ...state, cart: [...filteredCart, updatedItem] }
     }
     case REDUCER_ACTON_TYPE.SUBMIT: {
-      // Logic to submit cart
       return { ...state, cart: [] }
     }
     case REDUCER_ACTON_TYPE.TOGGLE_OFFER: {
@@ -122,7 +119,6 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
 const useCartContext = (initCartState: CartStateType) => {
   const [state, dispatch] = useReducer(reducer, initCartState)
-  // Other hooks and logic
   const sortedCart = useMemo(() => {
     // Sorting the cart by item names alphabetically
     const sorted = [...state.cart].sort((a, b) => a.name.localeCompare(b.name));
@@ -144,7 +140,7 @@ const useCartContext = (initCartState: CartStateType) => {
     if (state.activeOffers) {
       let total = 0;
       state.cart.forEach(item => {
-        const priceInDollars = item.price ; // Convert price from cents to dollars
+        const priceInDollars = item.price ; 
         if (item.name === 'Apple') {
           total += Math.ceil(item.quantity / 2) * priceInDollars; // Buy one, get one free on Apples
         } else if (item.name === 'Orange') {
@@ -186,7 +182,6 @@ export const CartContext = createContext<UseCartContextType>(initCartContextStat
 type ChildrenType = { children?: ReactElement | ReactElement[] }
 
 export const CartProvider = ({ children }: ChildrenType): ReactElement => {
-  // CartProvider component
   return (
     <CartContext.Provider value={useCartContext(initCartState)}>
       {children}
